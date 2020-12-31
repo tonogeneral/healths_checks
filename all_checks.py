@@ -6,6 +6,10 @@ def check_reboot():
     return os.path.exists("/run/reboot-required")
 
 
+def check_cpu_constrained():
+    return psutil.cpu_percent(1) > 75
+
+
 def check_disk_full(disk,min_absolute,min_percent):
     "Return true if there isnt enough disk space"
     du = shutil.disk_usage(disk)
